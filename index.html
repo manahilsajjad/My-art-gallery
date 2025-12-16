@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art gallary</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #faf7f2;
+            color: #333;
+        }
+
+        section {
+            padding: 60px 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin-bottom: 15px;
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            background: #6a5acd;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(to right, #ee65a5, #bbe6e9);
+            color: white;
+            text-align: center;
+            padding: 90px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            font-size: 20px;
+        }
+
+        .hero button {
+            margin-top: 25px;
+            padding: 14px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            background: white;
+            color: #6a5acd;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* ===== SLIDER ===== */
+        .slider {
+            max-width: 900px;
+            margin: 50px auto;
+        }
+
+        .myslide {
+            display: none;
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        /* ===== GALLERY CARDS ===== */
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            width: 280px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card-content h3 {
+            color: #6a5acd;
+        }
+
+        .card-content button {
+            margin-top: 10px;
+            padding: 8px 18px;
+            border: none;
+            border-radius: 15px;
+            background: #ffb703;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* ===== ART FACTS ===== */
+        .facts {
+            background: #efeafd;
+            min-height: 100vh;
+        }
+
+        .fact-grid {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .fact {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+            font-size: 17px;
+        }
+
+        /* ===== ARTISTS ===== */
+        .artists {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .artist {
+            background: white;
+            width: 220px;
+            border-radius: 20px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        .artist img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .contact-info,
+        .contact-form {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .contact-form button {
+            padding: 12px 25px;
+            border: none;
+            background: #6a5acd;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #3d2c8d;
+            color: white;
+            text-align: center;
+            padding: 30px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#facts">Facts</a></li>
+            <li><a href="#artists">Artists</a></li>
+            <li><a href="#contact">Contact</a></li>
+
+        </ul>
+
+    </nav>
+    <section class="hero" id="home">
+        <h1>🎨Welcome to my art website🎨 </h1>
+        <p>A colorful world of drawings, paintings, and creativity made with love.
+        </p>
+        <button onclick="document.getElementById('gallery').scrollIntoView()">Explore Gallery</button>
+    </section>
+
+
+    <div class="slider">
+        <img class="myslide" src="./Images/underwater-scenery-drawing.webp" style="height: 800px; width: 100%;">
+        <img class="myslide" src="./Images/HD-wallpaper-★bright-full-moon★-drawing.jpg"
+            style="height: 800px; width: 100%;">
+        <img class="myslide" src="./Images/sunset-drawing.jpg" style="height: 800px; width: 100%;">
+        <img class="myslide" src="./Images/Realistic-girl-drawing.jpg" style="height: 800px; width: 100%;">
+        <img class="myslide" src="./Images/wildlife.jpg" style="height: 800px; width: 100%;">
+        <img class="myslide" src="./Images/kawii-food.jpg" style="height:800px; width: 100%;">
+        <img class="myslide" src="./Images/donut-drawing.jpg" style="height: 800px; width: 100%;">
+        <img class="myslide" src="/Capston/Images/Geometric-drawing.jpg" style="height: 800px; width: 100%;">
+        <img class="myslide" src="./Images/disney-characters.jpg" style="height: 800px; width: 100%;">
+        <img class="myslide" src="./Images/doodles-drawing.webp" style="height: 800px; width: 100%;">
+    </div>
+    <section id="gallery">
+        <h2 style="text-align:center; font-size:36px;">Art Gallery </h2>
+        <div class="cards">
+            <div class="card">
+
+                <img src="https://media.istockphoto.com/id/1696682163/photo/coral-reefs-in-the-red-sea-yanbu-saudi-arabia.jpg?s=612x612&w=0&k=20&c=Ow-GzzgM3fhmzTp5VLwqIu2Xzc_aUdvdkIv-2FhRCDA="
+                    alt="Underwater Scenery Drawing" style="width:100%">
+                <div class="card-content">
+                    <h4><b>Underwater Scenery Drawing🌊</b></h4>
+                    <p>A beautiful underwater scene filled with vibrant marine life and coral reefs.</p>
+
+                    <button>View art</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://media.istockphoto.com/id/1019107374/photo/fairy-glen-in-isle-of-skye-scotland-uk.jpg?s=2048x2048&w=is&k=20&c=KyZefzU-4iqBi1cdVsT1i2I-LqEWbt2vlEroh51z1Nw="
+                    alt="Nature" style="width:100%">
+                <div class="card-content">
+                    <h4><b>Nature Drawing🌿</b></h4>
+                    <p>A peaceful drawing inspired by nature.</p>
+
+                    <button>View art</button>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <img src="https://plus.unsplash.com/premium_photo-1674168441882-7bc2d32131ae?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Abstract Art" style="width:100%">
+                <div class="card-content">
+                    <h4><b>Abstract Art 🎭</b></h4>
+                    <p>Creative abstract artwork using shapes and colors.</p>
+
+                    <button>View art</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1481988535861-271139e06469?q=80&w=1190&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Sunset Scenery " style="width:100%">
+                <div class="card-content">
+
+                    <h4><b> Sunset Painting 🌅</b></h4>
+                    <p>Beautiful painting showing colorful sunset shades.</p>
+
+                    <button>View art</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="facts" class="facts">
+        <h2 style="text-align:center; font-size: 36px;">Fun Art Facts 🧠</h2>
+        <div class="fact-grid">
+            <div class="fact">🎨 Every child is born an artist.</div>
+            <div class="fact">🖌️ Colors can change human emotions.</div>
+            <div class="fact">🖼️ Art helps express feelings without words.</div>
+            <div class="fact">✏️ Drawing improves focus and imagination.</div>
+            <div class="fact">🌈 Mixing colors creates new shades.</div>
+            <div class="fact">🧑‍🎨 Famous artists practice daily.</div>
+            <div class="fact">🖍️ Art improves creativity and confidence.</div>
+            <div class="fact">🎭 Art has been around for thousands of years.</div>
+        </div>
+
+    </section>
+    <section id="artists" class="artists">
+        <h2 style="text-align:center; font-size: 36px;">Famous Artists 👨‍🎨</h2>
+        <div class="artists">
+            <div class="artist">
+                <h3>Leonardo da Vinci🖼️🛠️</h3>
+                <p>Italian Renaissance artist known for the Mona Lisa and The Last Supper.</p>
+            </div>
+
+            <div class="artist">
+                <h3>Rembrandt van Rijn 🕯️👤</h3>
+                <p>Dutch Golden Age painter known for his portraits and masterful use of light and shadow.</p>
+            </div>
+
+            <div class="artist">
+                <h3>Georgia O’Keeffe 🌷🏜️</h3>
+                <p>American painter known for large-scale flower paintings and southwestern landscapes.</p>
+            </div>
+        </div>
+
+    </section>
+    <section id="contact">
+        <h2 style="text-align: center; font-size: 36px;">Contact Us 📞</h2>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get in touch!</h3>
+                <p>📧 Email: artgallery@kids.com</p>
+                <p>📍 City: Taastrup</p>
+                <p>☎ Phone: 98765 43210</p>
+            </div>
+
+            <div class="contact-form">
+                <input type="text" placeholder="Your Name">
+                <input type="email" placeholder="Your Email">
+                <select>
+                    <option>Favourite Art Type</option>
+                    <option>Painting</option>
+                    <option>Drawing</option>
+                    <option>Digital Art</option>
+                    <option>Abstract</option>
+                </select>
+                <textarea rows="4" placeholder="Your Message"></textarea>
+                <button>Submit</button>
+            </div>
+        </div>
+
+    </section>
+    <footer>
+        <p>My art gallery.</p>
+        <p>Every child is an artisit.</p>
+        <p>© 2025 All Rights Reserved</p>
+    </footer>
+
+
+    <script>
+
+
+
+        let index = 0;
+        let slides = document.getElementsByClassName("myslide");
+
+        function showSlides() {
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            index++;
+            if (index > slides.length) { index = 1; }
+            slides[index - 1].style.display = "block";
+            setTimeout(showSlides, 3000);
+        }
+        showSlides();
+
+
+
+
+
+    </script>
+</body>
+
+</html>
